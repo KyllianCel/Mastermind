@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" type="image/png" href="image/logo_photo.png">
+    <title>MASTERMIND</title>
+</head>
+<body>
+    <div class="jeu-complet">
+    <div class="config-jeu">
+    <header>
+        <img src="image/logo_texte.png" alt="MASTERMIND">
+        <p>Bienvenue sur mon mastermind.</p> 
+        <br><p>Le but est de trouver la bonne combinaison en moins de 10 essais.</p>
+    </header>
+
+    <h3>Configuration</h3><br>
+
+    <div id="config-parameters">
+        <p>Longueur du mastermind :</p>
+        <select name="longueur" id="longueur">
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+
+        <p>Nombre de couleurs possible : </p>
+        <select name="nbr_couleur" id="nbr_couleur">
+            <option value="6" selected>6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+    </div>
+
+    <p id="tentatives-restantes" style="display: none;">Tentatives restantes : 10</p>
+    
+    <button type="button" id="commencer">Commencer la partie</button>
+
+    <div id="selection-couleurs" style="display: none;">
+        <!-- Palette de couleurs générée dynamiquement par JavaScript -->
+    </div>
+
+    <div id="proposition-actuelle"></div>
+
+    <button type="button" id="valider" disabled>Valider</button> 
+    <button type="button" id="supprimer" disabled>Supprimer la proposition</button>
+    <button type="button" id="reset" disabled>Réinitialiser</button>
+    </div>
+    
+    <div class="historique-jeu">
+    <div id="legende-resultats">
+        <div>
+            <div class="indicatif bien-place"></div>
+            <span>Bien placé</span>
+        </div>
+        <div>
+            <div class="indicatif mal-place"></div>
+            <span>Mal placé</span>
+        </div>
+        <div>
+            <div class="indicatif absente"></div>
+            <span>Absent</span>
+        </div>
+    </div>
+
+    <footer class="historique"></footer>
+    </div>
+</div>
+
+    <div id="custom-alert" class="modal hidden">
+        <div class="modal-content">    
+            <p id="alert-message"></p>
+            <button id="close-alert">OK</button>
+        </div>
+    </div>
+
+    <script src="script/script.js"></script>
+</body>
+</html>

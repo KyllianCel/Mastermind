@@ -1,0 +1,477 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style global */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+
+header {
+    margin-bottom: 20px;
+}
+
+header img {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+/* Section de configuration */
+h3 {
+    color: #444;
+}
+
+select, button {
+    padding: 10px;
+    margin: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+select:focus, button:focus {
+    border-color: #444;
+}
+
+/* Boutons */
+button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button.disabled {
+    background-color: #ccc;
+}
+
+button#reset {
+    background-color: #d9534f;
+}
+
+button#reset:hover {
+    background-color: #c9302c;
+}
+
+button#supprimer {
+    background-color: rgb(241, 136, 98);
+}
+
+button#supprimer:hover {
+    background-color: rgb(233, 161, 28);
+}
+
+/* Palette de couleurs */
+#selection-couleurs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+button.couleur {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+#proposition-actuelle {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.couleur-selectionnee {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+/* Historique des tentatives */
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    width: 300px;
+    max-height: 500px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+footer p:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+
+/* Historique visuel */
+.historique-tentative {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.historique-couleur {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    border-radius: 50%;
+    border: 1px solid rgb(88, 88, 88);
+}
+
+.feedback-bien-place {
+    width: 15px;
+    height: 15px;
+    background-color: black;
+    margin-left: 5px;
+    border-radius: 50%;
+    border: 1px solid gray;
+}
+
+.feedback-mal-place {
+    width: 15px;
+    height: 15px;
+    background-color: gray;
+    margin-left: 5px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+
+.feedback-absente {
+    width: 15px;
+    height: 15px;
+    background-color: white; /* Indicateur absent */
+    margin-left: 5px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+/* Style de la boîte modale */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.modal-content button {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.modal-content button:hover {
+    background-color: #4cae4c;
+}
+
+.modal.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content img{
+    width: 200px;
+    height: auto;
+}
+
+
+/* Légende des résultats */
+#legende-resultats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    display: flex;    
+    align-items: center;
+    margin: 0 auto;         
+}
+
+#legende-resultats div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.indicatif {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #444;
+}
+
+.indicatif.bien-place {
+    background-color: black;
+}
+
+.indicatif.mal-place {
+    background-color: gray;
+    border: 1px solid #999;
+}
+
+.indicatif.absente {
+    background-color: white;
+}
+
+
+/* Conteneur des tentatives */
+.tentative-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+/* Conteneur pour les résultats visuels */
+.resultats-couleurs {
+    display: flex;
+    gap: 5px;
+}
+
+.resultats-couleurs div {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #444;
+}
+
+/* Combinaison secrète affichée */
+#combinaison-secrete {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* Bouton OK */
+#close-alert {
+    padding: 10px 20px;
+    background: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#close-alert:hover {
+    background: #4cae4c;
+}
+
+/* Style des pastilles de couleur */
+#combinaison-secrete .couleur-pastille {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #333;
+}
+
+
+/* Conteneur global du jeu */
+.jeu-complet {
+    display: flex; 
+    justify-content: space-between; 
+    width: 80%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* Configuration du jeu */
+.config-jeu {
+    width: 60%;
+    margin-right: 20px; 
+}
+
+/* Historique du jeu */
+.historique-jeu {
+    width: 45%; 
+    margin-left: 20px; 
+    max-height: 600px;
+    overflow-y: auto;
+    border-left: 1px solid #ccc; 
+    padding-left: 20px; 
+}
+
+footer.historique{
+    justify-content: center; 
+    align-items: center;    
+    margin: 20px auto;         
+    width: fit-content;     
+}
+
+/* Style global pour un écran étroit (mobile) */
+@media (max-width: 600px) {
+    body {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+
+    .jeu-complet {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .config-jeu, 
+    .historique-jeu {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+    }
+
+    header img {
+        width: 100px;
+    }
+
+    select, button {
+        font-size: 0.9em;
+        padding: 8px;
+        margin: 8px;
+    }
+
+    footer {
+        width: 100%;
+    }
+
+    button.couleur {
+        width: 25px;
+        height: 25px;
+    }
+
+    #selection-couleurs {
+        gap: 0;
+    }
+
+    .historique-couleur{
+        width: 18px;
+        height: 18px;
+    }
+
+    .historique-jeu{
+        border-left: 0px;
+    }
+
+}
+
+/* Style pour les tablettes */
+@media (min-width: 601px) and (max-width: 1321px) {
+    .jeu-complet {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .config-jeu,
+    .historique-jeu {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    header img {
+        width: 120px;
+    }
+
+    button.couleur {
+        width: 35px;
+        height: 35px;
+    }
+
+    .historique-jeu{
+        border-left: 0px;
+    }
+}
+
+/* Style pour les écrans larges (ordinateurs) */
+@media (min-width: 1321px) and (max-width: 1400px) {
+    .jeu-complet {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    button.couleur {
+        width: 40px;
+        height: 40px;
+    }
+
+    header img {
+        width: 150px;
+    }
+}
+
+
+
+
